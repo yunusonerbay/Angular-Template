@@ -47,6 +47,7 @@
     "svgmap": "^2.10.1",
     "swiper": "^10.0.4",
     "tslib": "^2.6.0",
+    "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.9.0",
     "xlsx": "^0.18.5",
     "zone.js": "~0.13.1"
