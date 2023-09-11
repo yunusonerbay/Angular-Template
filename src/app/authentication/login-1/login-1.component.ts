@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { LoginModel } from './../../models/request/loginModel';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 @Component({
     templateUrl: './login-1.component.html'
 })
@@ -19,16 +20,16 @@ export class Login1Component {
   constructor(private fb: FormBuilder,
      private router: Router,
       private location: Location,
-      private authenticationService : AuthenticationService) {}
+      private authenticationService : AuthenticationService,
+      private localStorageService:LocalStorageService,) {}
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('email',this.validateForm);
-      console.log('submit', this.validateForm.value);
-      console.log('submit', this.validateForm.value.userName);
-      console.log('submit', this.validateForm.value.password);
+      // console.log('email',this.validateForm);
+      // console.log('submit', this.validateForm.value);
+      // console.log('submit', this.validateForm.value.userName);
+      // console.log('submit', this.validateForm.value.password);
 
-      debugger
       const loginModel: LoginModel = {
         lang : "TR",
         phoneCountry :"TR",
@@ -40,17 +41,17 @@ export class Login1Component {
       };
 
 
-      this.authenticationService.login2(loginModel).subscribe(response => {
-        console.log(response);
-      },responseError => {
-          console.log(responseError)
+      this.authenticationService.login(loginModel).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.localStorageService.set(response.data,"tokenModel")
+          this.router.navigate(['/dashboard/demo-one']).then(() => { window.location.reload();  });
+        },
+        error: (e) => {
+          console.log(e);
+        },
       });
 
-
-    //   this.router.navigate(['/dashboard/demo-one'])
-    //  .then(() => {
-    //       window.location.reload();
-    //    });
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {

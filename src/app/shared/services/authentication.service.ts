@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable,tap } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User } from '../interfaces/user.type';
@@ -14,7 +14,7 @@ const USER_AUTH_API_URL = '/api-url';
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    controllerUrl : string = `https://localhost:44356/api/Auth2`;
+    controllerUrl : string = `https://localhost:7068/api/Auth`;
 
 
     constructor(private http: HttpClient) {
@@ -27,16 +27,15 @@ export class AuthenticationService {
     }
 
 
-    login2(loginModel:LoginModel){
+    login(loginModel:LoginModel){
         return this.http.post<ItemResponseModel<TokenModel>>(`${this.controllerUrl}/login`,loginModel)
-        .pipe(map(user => {
-            console.log(user);
-           
-        }));
+        .pipe( tap((response) => {
+            console.log(response);
+          }));
       }
 
 
-    login(loginModel : LoginModel) {
+    login2(loginModel : LoginModel) {
         return this.http.post<any>(USER_AUTH_API_URL, loginModel)
         .pipe(map(user => {
             console.log(user);
