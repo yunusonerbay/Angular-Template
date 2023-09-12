@@ -6,6 +6,8 @@ import { Location } from '@angular/common';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { LoginModel } from './../../models/request/loginModel';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
+import { LanguageModel } from './../../models/request/languageModel';
 @Component({
     templateUrl: './login-1.component.html'
 })
@@ -16,12 +18,14 @@ export class Login1Component {
   error = false;
   socialMediaButtons = socialIcons.socialMediaButtons;
   validateForm!: FormGroup;
+  SignIn:string
 
   constructor(private fb: FormBuilder,
      private router: Router,
       private location: Location,
       private authenticationService : AuthenticationService,
-      private localStorageService:LocalStorageService,) {}
+      private localStorageService:LocalStorageService,
+      private languageService :LanguageService,) {}
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -74,6 +78,24 @@ export class Login1Component {
       password: ['123456', [Validators.required]],
       remember: [true],
     });
+    
+    // const LanguageModel: LanguageModel={
+    //   LanguageCode:"EN",
+    //   Key:"SignIn"
+    // }
+    // this.languageService.Language(LanguageModel).subscribe({
+    //     next: (response) => {
+    //       debugger
+          
+    //       console.log("languageServiceResponse = " +response.data);
+    //       this.SignIn=response.data;
+    //       // this.localStorageService.set(response.data,"tokenModel")
+    //       // this.router.navigate(['/dashboard/demo-two']).then(() => { window.location.reload();  });
+    //     },
+    //     error: (e) => {
+    //       console.log(e);
+    //     },
+    // });
   }
 
 

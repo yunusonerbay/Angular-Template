@@ -1,5 +1,5 @@
 
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER,NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
@@ -23,14 +23,21 @@ import { FullLayoutComponent } from './layouts/full-layout/full-layout.component
 
 import { ThemeConstantService } from './shared/services/theme-constant.service';
 import { AuthenticationService } from './shared/services/authentication.service';
+import { LanguagePipe } from './shared/pipes/language.pipe';
+import { LanguageService } from './shared/services/language.service';
 
 registerLocaleData(en);
 
+export function setupTranslateFactory(
+  service: LanguageService): Function {
+  return () => service.use('tr');
+}
 @NgModule({
     declarations: [
         AppComponent,
         CommonLayoutComponent,
         FullLayoutComponent,
+        LanguagePipe
     ],
     imports: [
         BrowserModule,
@@ -43,6 +50,7 @@ registerLocaleData(en);
         NgChartsModule,
         NgApexchartsModule,
         AngularSvgIconModule.forRoot(),
+        
     ],
     providers: [
         {
@@ -53,8 +61,15 @@ registerLocaleData(en);
             provide: LocationStrategy,
             useClass: PathLocationStrategy
         },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: setupTranslateFactory,
+            deps: [ LanguageService ],
+            multi: true
+          },
         ThemeConstantService,
-        AuthenticationService
+        AuthenticationService,
+      
     ],
     bootstrap: [AppComponent]
 })
