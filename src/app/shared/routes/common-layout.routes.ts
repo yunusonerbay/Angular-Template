@@ -10,20 +10,20 @@ export const CommonLayout_ROUTES: Routes = [
     },
 
     // Charts
-    {
-      path: 'changelog',
-      children: [
-          {
-              path: '',
-              redirectTo: '/changelog/changelog',
-              pathMatch: 'full'
-          },
-          {
-              path: '',
-              loadChildren: () => import('../../changelog/changelog.module').then(m => m.ChangelogModule)
-            },
-        ]
-    },
+    // {
+    //   path: 'changelog',
+    //   children: [
+    //       {
+    //           path: '',
+    //           redirectTo: '/changelog/changelog',
+    //           pathMatch: 'full'
+    //       },
+    //       {
+    //           path: '',
+    //           loadChildren: () => import('../../changelog/changelog.module').then(m => m.ChangelogModule)
+    //         },
+    //     ]
+    // },
 
     //Apps
     {

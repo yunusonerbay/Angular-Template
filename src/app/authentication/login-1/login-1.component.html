@@ -4,8 +4,8 @@
   <div class="admin">
     <div class="text-center">
       <img
-        class="inline dark:hidden"
-        src="../../../assets/images/logo/logo-dark.png"
+        class="inline dark:hidden w-40 h-24"
+        src="../../../assets/images/logo/AHL-Pay.png"
         alt="image"
       />
       <img
@@ -43,12 +43,12 @@
                   nzFor="userName"
                   >Email</nz-form-label
                 >
-                <nz-form-control nzErrorTip="The input is not valid E-mail!">
+                <nz-form-control nzErrorTip="Geçersiz Email Adresi!">
                   <input
                     class="flex items-center shadow-none py-[10px] px-[20px] h-[48px] border-1 border-regular dark:border-white/10 rounded-4 w-full text-[14px] font-normal leading-[1.5] placeholder:text-[#A0A0A0] dark:bg-white/10 dark:text-white/60"
                     nz-input
                     formControlName="userName"
-                    placeholder="Username or Email"
+                    placeholder="Email adresinizi giriniz"
                     id="userName"
                   />
                 </nz-form-control>
@@ -57,10 +57,10 @@
                 <nz-form-label
                   class="text-[14px] leading-[1.4285714286] font-medium [&>label]:text-dark [&>label]:dark:text-white/[.87] capitalize inline-block"
                   nzRequired
-                  nzFor="password"
+                  nzFor="Şifre"
                   >Şifre</nz-form-label
                 >
-                <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-form-control nzErrorTip="Lütfen Şifrenizi Giriniz!">
                   <nz-input-group
                     class="flex items-center shadow-none py-[10px] px-[20px] h-[48px] border-1 border-regular dark:border-white/10 rounded-4 w-full text-[14px] font-normal leading-[1.5] dark:bg-white/10"
                     [nzSuffix]="suffixTemplate"
@@ -70,7 +70,7 @@
                       formControlName="password"
                       [type]="passwordVisible ? 'text' : 'password'"
                       id="password"
-                      placeholder="Password"
+                      placeholder="Şifrenizi giriniz"
                       class="placeholder:text-[#A0A0A0] dark:bg-transparent bg-transparent dark:text-white/60"
                     />
                   </nz-input-group>
@@ -97,7 +97,7 @@
                 <a
                   class="text-13 text-primary hover:text-dark dark:hover:text-white/[.87]"
                   routerLink="/authentication/forget-pass"
-                  >forget password?</a
+                  >Şifremi Unuttum?</a
                 >
               </div>
               <button
@@ -106,7 +106,7 @@
                 class="inline-flex items-center justify-center w-full h-[48px] text-14 rounded-6 font-medium bg-primary text-white cursor-pointer hover:bg-primary-hbr border-primary transition duration-300"
               >
                 <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
-                Griş Yap
+                Giriş Yap
               </button>
             </form>
             <!-- <div
