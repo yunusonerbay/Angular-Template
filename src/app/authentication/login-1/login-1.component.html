@@ -25,7 +25,7 @@
             <h2
               class="text-18 font-semibold leading-[1] mb-0 text-red-500 dark:text-white/[.87] title"
             >
-              Sign in HexaDash yunus önerbay
+              Giriş Yap
             </h2>
           </div>
           <div class="py-[30px] px-[40px] content">
@@ -41,7 +41,7 @@
                   class="text-[14px] w-full leading-[1.4285714286] font-medium [&>label]:text-dark [&>label]:dark:text-white/[.87] mb-[8px] capitalize inline-block"
                   nzRequired
                   nzFor="userName"
-                  >Username or Email Address</nz-form-label
+                  >Email</nz-form-label
                 >
                 <nz-form-control nzErrorTip="The input is not valid E-mail!">
                   <input
@@ -58,7 +58,7 @@
                   class="text-[14px] leading-[1.4285714286] font-medium [&>label]:text-dark [&>label]:dark:text-white/[.87] capitalize inline-block"
                   nzRequired
                   nzFor="password"
-                  >Password</nz-form-label
+                  >Şifre</nz-form-label
                 >
                 <nz-form-control nzErrorTip="Please input your Password!">
                   <nz-input-group
@@ -85,15 +85,15 @@
                 </nz-form-control>
               </nz-form-item>
               <div
-                class="flex items-center justify-between capitalize mb-[19px] mt-[23px]"
+                class="flex items-center justify-end capitalize mb-[19px] mt-[23px]"
               >
-                <label
+                <!-- <label
                   nz-checkbox
                   formControlName="remember"
                   class="font-normal text-13 leading-[22px] text-light dark:text-white/60"
                 >
                   <span>Keep me logged in</span>
-                </label>
+                </label> -->
                 <a
                   class="text-13 text-primary hover:text-dark dark:hover:text-white/[.87]"
                   routerLink="/authentication/forget-pass"
@@ -106,18 +106,18 @@
                 class="inline-flex items-center justify-center w-full h-[48px] text-14 rounded-6 font-medium bg-primary text-white cursor-pointer hover:bg-primary-hbr border-primary transition duration-300"
               >
                 <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
-                Log in
+                Griş Yap
               </button>
             </form>
-            <div
+            <!-- <div
               class="relative mt-[25px] text-center text-13 text-regular dark:text-white/[87] before:content-[''] before:absolute before:w-full ltr:before:left-0 rtl:before:right-0 before:top-[50%] before:translate-y-[-50%] before:z-[1] before:h-[1px] before:bg-normal before:dark:bg-white/10"
             >
               <span
                 class="font-medium px-[15px] inline-block relative z-[2] bg-white dark:bg-[#1f1f1f] text-theme-gray dark:text-white/60 capitalize"
                 >or</span
               >
-            </div>
-            <div
+            </div> -->
+            <!-- <div
               class="mt-[30px] d-flex align-items-center justify-content-center"
             >
               <ul
@@ -149,7 +149,7 @@
                   ></div>
                 </li>
               </ul>
-            </div>
+            </div> -->
           </div>
           <div
             class="text-center p-[25px] rounded-b-6 bg-deepBG dark:bg-white/10 bottom"
@@ -157,10 +157,10 @@
             <p
               class="text-[14px] font-medium text-theme-gray dark:text-white/[.87] inline-flex items-center gap-[6px] mb-0"
             >
-              Don`t have an account?<a
+              Hesabın yok mu?<a
                 class="transition duration-300 text-primary hover:text-dark dark:hover:text-white/[.87]"
                 routerLink="/authentication/sign-up-1"
-                >Sign up</a
+                >Kayıt Ol</a
               >
             </p>
           </div>

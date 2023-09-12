@@ -25,10 +25,6 @@ export class Login1Component {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      // console.log('email',this.validateForm);
-      // console.log('submit', this.validateForm.value);
-      // console.log('submit', this.validateForm.value.userName);
-      // console.log('submit', this.validateForm.value.password);
 
       const loginModel: LoginModel = {
         lang : "TR",
@@ -40,12 +36,11 @@ export class Login1Component {
         deviceModel :"string"
       };
 
-
       this.authenticationService.login(loginModel).subscribe({
         next: (response) => {
           console.log(response);
           this.localStorageService.set(response.data,"tokenModel")
-          this.router.navigate(['/dashboard/demo-one']).then(() => { window.location.reload();  });
+          this.router.navigate(['/dashboard/demo-two']).then(() => { window.location.reload();  });
         },
         error: (e) => {
           console.log(e);

@@ -9,14 +9,15 @@ export const ROUTES: TopMenuInterface[] = [{
   iconType: 'nzIcon',
   iconTheme: 'outline',
   icon: 'appstore-add',
-  submenu: [{
-      path: '/dashboard/demo-one',
-      title: 'Demo One',
-      iconType: '',
-      icon: '',
-      iconTheme: '',
-      submenu: [],
-    },
+  submenu: [
+    // {
+    //   path: '/dashboard/demo-one',
+    //   title: 'Demo One',
+    //   iconType: '',
+    //   icon: '',
+    //   iconTheme: '',
+    //   submenu: [],
+    // },
     {
       path: '/dashboard/demo-two',
       title: 'Demo Two',
