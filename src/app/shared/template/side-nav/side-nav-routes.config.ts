@@ -3,53 +3,54 @@ import {
 } from '../../interfaces/side-nav.type';
 
 export const ROUTES: SideNavInterface[] = [{
-    path: '',
+    path: '/dashboard/demo-two',
     title: 'Dashboard',
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: 'appstore-add',
-    submenu: [{
-        path: '/dashboard/demo-one',
-        title: 'Demo One',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: [],
-      },
-      {
-        path: '/dashboard/demo-two',
-        title: 'Demo Two',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-three',
-        title: 'Demo Three',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
-      {
-        path: '/dashboard/demo-four',
-        title: 'Demo Four',
-        iconType: '',
-        icon: '',
-        iconTheme: '',
-        submenu: []
-      },
+    submenu: [
+      // {
+      //   path: '/dashboard/demo-one',
+      //   title: 'Demo One',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: [],
+      // },
+      // {
+      //   path: '/dashboard/demo-two',
+      //   title: 'Demo Two',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-three',
+      //   title: 'Demo Three',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
+      // {
+      //   path: '/dashboard/demo-four',
+      //   title: 'Demo Four',
+      //   iconType: '',
+      //   icon: '',
+      //   iconTheme: '',
+      //   submenu: []
+      // },
     ]
   },
-  {
-    path: '/changelog/changelog',
-    title: 'Change-Log',
-    iconType: 'nzIcon',
-    iconTheme: 'outline',
-    icon: 'rise',
-    submenu: []
-  },
+  // {
+  //   path: '/changelog/changelog',
+  //   title: 'Change-Log',
+  //   iconType: 'nzIcon',
+  //   iconTheme: 'outline',
+  //   icon: 'rise',
+  //   submenu: []
+  // },
   {
     path: '',
     title: 'Apps',
