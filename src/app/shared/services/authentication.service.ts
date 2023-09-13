@@ -7,6 +7,8 @@ import { User } from '../interfaces/user.type';
 import { LoginModel } from 'src/app/models/request/loginModel';
 import { ItemResponseModel } from 'src/app/models/response/itemResponseModel';
 import { TokenModel } from 'src/app/models/tokenModel';
+import { LocalStorageService } from './local-storage.service';
+import { VerifyModel } from 'src/app/models/request/verifyModel';
 
 const USER_AUTH_API_URL = '/api-url';
 
@@ -14,10 +16,13 @@ const USER_AUTH_API_URL = '/api-url';
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    controllerUrl : string = `https://localhost:7068/api/Auth`;
+    // controllerUrl : string = `https://localhost:7068/api/Auth`;
+    controllerUrl : string = `https://localhost:44356/api/Auth2`;
 
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient, 
+        private localStorageService: LocalStorageService) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -28,12 +33,24 @@ export class AuthenticationService {
 
 
     login(loginModel:LoginModel){
-        return this.http.post<ItemResponseModel<TokenModel>>(`${this.controllerUrl}/login`,loginModel)
-        .pipe( tap((response) => {
+        return this.http.post<ItemResponseModel<TokenModel>>(`${this.controllerUrl}/login`, loginModel)
+        .pipe(tap((response) => {
             console.log(response);
           }));
-      }
+    }
 
+    verify(verifyModel:VerifyModel){
+        return this.http.post<ItemResponseModel<TokenModel>>(`${this.controllerUrl}/verifycode`, verifyModel)
+        .pipe(tap((response) => {
+            console.log(response);
+          }));
+    }
+
+
+
+    isAuthenticated(){
+        return this.localStorageService.get("tokenModel") ? true : false
+    }
 
     login2(loginModel : LoginModel) {
         return this.http.post<any>(USER_AUTH_API_URL, loginModel)

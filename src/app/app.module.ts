@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
+import { ToastrModule } from 'ngx-toastr';
 import { registerLocaleData, PathLocationStrategy, LocationStrategy } from '@angular/common';
 import en from '@angular/common/locales/en';
 
@@ -23,8 +23,9 @@ import { FullLayoutComponent } from './layouts/full-layout/full-layout.component
 
 import { ThemeConstantService } from './shared/services/theme-constant.service';
 import { AuthenticationService } from './shared/services/authentication.service';
-import { LanguagePipe } from './shared/pipes/language.pipe';
 import { LanguageService } from './shared/services/language.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 
 registerLocaleData(en);
 
@@ -36,8 +37,8 @@ export function setupTranslateFactory(
     declarations: [
         AppComponent,
         CommonLayoutComponent,
-        FullLayoutComponent,
-        LanguagePipe
+        FullLayoutComponent
+        
     ],
     imports: [
         BrowserModule,
@@ -49,8 +50,11 @@ export function setupTranslateFactory(
         NzSpinModule,
         NgChartsModule,
         NgApexchartsModule,
-        AngularSvgIconModule.forRoot(),
-        
+        ToastrModule.forRoot({
+            positionClass:"toast-bottom-right"
+          }),
+        AngularSvgIconModule.forRoot()
+
     ],
     providers: [
         {
@@ -67,6 +71,11 @@ export function setupTranslateFactory(
             deps: [ LanguageService ],
             multi: true
           },
+          {
+            provide:HTTP_INTERCEPTORS,
+             useClass:AuthInterceptor, 
+             multi:true
+            },
         ThemeConstantService,
         AuthenticationService,
       

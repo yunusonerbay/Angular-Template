@@ -7,7 +7,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 import { LoginModel } from './../../models/request/loginModel';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
-import { LanguageModel } from './../../models/request/languageModel';
+
 @Component({
     templateUrl: './login-1.component.html'
 })
@@ -44,7 +44,7 @@ export class Login1Component {
         next: (response) => {
           console.log(response);
           this.localStorageService.set(response.data,"tokenModel")
-          this.router.navigate(['/dashboard/demo-two']).then(() => { window.location.reload();  });
+          this.router.navigate(['authentication/verify']).then(() => { window.location.reload();  });
         },
         error: (e) => {
           console.log(e);

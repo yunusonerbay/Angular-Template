@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 //import { DemoOneDashboardComponent } from './demo-one/demo-one.component';
 import { DemoTwoDashboardComponent } from './demo-two/demo-two.component';
+import { LoginGuard } from '../shared/guards/login.guard';
 //import { DemoThreeComponent } from './demo-three/demo-three.component';
 // import { DemoFourComponent } from './demo-four/demo-four.component';
 
@@ -18,8 +19,8 @@ const routes: Routes = [
         path: 'demo-two',
         component: DemoTwoDashboardComponent,
         data: {
-            title: 'Demo Two',
-        }
+            title: 'Yunus',
+        }, canActivate: [LoginGuard],
     },
     // {
     //     path: 'demo-three',

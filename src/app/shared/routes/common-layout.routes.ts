@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { ComponentsComponent } from '../../components/components.component'
-
+import { LoginGuard } from '../../shared/guards/login.guard';
 export const CommonLayout_ROUTES: Routes = [
 
     //Dashboard
@@ -31,6 +31,7 @@ export const CommonLayout_ROUTES: Routes = [
         data: {
             title: 'Apps'
         },
+       
         children: [
             {
                 path: '',

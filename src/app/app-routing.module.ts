@@ -6,14 +6,15 @@ import { CommonLayoutComponent } from "./layouts/common-layout/common-layout.com
 
 import { FullLayout_ROUTES } from "./shared/routes/full-layout.routes";
 import { CommonLayout_ROUTES } from "./shared/routes/common-layout.routes";
+import { LoginGuard } from './shared/guards/login.guard';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/authentication/login-1', pathMatch: 'full' },
-  {
-      path: '',
-      redirectTo: '/authentication/login-1',
-      pathMatch: 'full',
-  },
+    { path: '', redirectTo: '/authentication/login-1', pathMatch: 'full' },
+    {
+        path: '',
+        redirectTo: '/authentication/login-1',
+        pathMatch: 'full',
+    },
   {
       path: '',
       component: CommonLayoutComponent,
@@ -22,7 +23,7 @@ const appRoutes: Routes = [
   {
       path: '',
       component: FullLayoutComponent,
-      children: FullLayout_ROUTES
+      children: FullLayout_ROUTES,
   }
 ];
 @NgModule({
