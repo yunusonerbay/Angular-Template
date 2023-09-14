@@ -47,6 +47,7 @@ export class VerifyComponent implements OnInit {
           next: (response) => {
             console.log(response);
             this.localStorageService.set(response.data,"tokenModel")
+            this.localStorageService.remove("loginTokenModel")
             this.router.navigate(['dashboard/demo-two']).then(() => { window.location.reload();  });
           },
           error: (e) => {

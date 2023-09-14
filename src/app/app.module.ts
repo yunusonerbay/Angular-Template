@@ -37,8 +37,7 @@ export function setupTranslateFactory(
     declarations: [
         AppComponent,
         CommonLayoutComponent,
-        FullLayoutComponent
-        
+        FullLayoutComponent,
     ],
     imports: [
         BrowserModule,
@@ -51,7 +50,6 @@ export function setupTranslateFactory(
         NgChartsModule,
         NgApexchartsModule,
         ToastrModule.forRoot({
-            positionClass:"toast-bottom-right"
           }),
         AngularSvgIconModule.forRoot()
 

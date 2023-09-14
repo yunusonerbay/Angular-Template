@@ -3,7 +3,7 @@ import {
 } from '../../interfaces/side-nav.type';
 
 export const ROUTES: SideNavInterface[] = [{
-    path: '/dashboard/demo-two',
+    path: '/dashboard',
     title: 'Dashboard',
     iconType: 'nzIcon',
     iconTheme: 'outline',

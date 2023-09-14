@@ -39,11 +39,12 @@ export class Login1Component {
         deviceId : "B22AA83C-2F55-43B8-A88E-DB56618F0312",
         deviceModel :"string"
       };
-
+      
+      debugger;
       this.authenticationService.login(loginModel).subscribe({
         next: (response) => {
           console.log(response);
-          this.localStorageService.set(response.data,"tokenModel")
+          this.localStorageService.set(response.data,"loginTokenModel")
           this.router.navigate(['authentication/verify']).then(() => { window.location.reload();  });
         },
         error: (e) => {

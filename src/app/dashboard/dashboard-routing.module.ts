@@ -1,41 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-//import { DemoOneDashboardComponent } from './demo-one/demo-one.component';
 import { DemoTwoDashboardComponent } from './demo-two/demo-two.component';
 import { LoginGuard } from '../shared/guards/login.guard';
-//import { DemoThreeComponent } from './demo-three/demo-three.component';
-// import { DemoFourComponent } from './demo-four/demo-four.component';
+import { DashboardComponent } from './dashboard.component';
+
 
 const routes: Routes = [
-    // {
-    //     path: 'demo-one',
-    //     component: DemoOneDashboardComponent,
-    //     data: {
-    //         title: 'Demo One ',
-    //     }
-    // },
+    {
+        path: '',
+        component: DashboardComponent,
+        data: {
+            title: 'Yunus dashboard',
+        }
+    },
     {
         path: 'demo-two',
         component: DemoTwoDashboardComponent,
         data: {
             title: 'Yunus',
-        }, canActivate: [LoginGuard],
+        },
+        //  canActivate: [LoginGuard],
     },
-    // {
-    //     path: 'demo-three',
-    //     component: DemoThreeComponent,
-    //     data: {
-    //         title: 'Demo Three',
-    //     }
-    // },
-    // {
-    //     path: 'demo-four',
-    //     component: DemoFourComponent,
-    //     data: {
-    //         title: 'Demo Four',
-    //     }
-    // }
+    
 ];
 
 @NgModule({
