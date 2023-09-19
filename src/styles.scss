@@ -3,8 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
+
 // 3rd party libraries
 
 // Theme customization
 @import './assets/scss/app.scss';
 
+
+@layer base {
+    .ngx-toastr{
+      @apply bg-red-300
+  }
+}
