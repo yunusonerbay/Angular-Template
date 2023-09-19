@@ -31,7 +31,17 @@ import { NzDemoAlertMoreTypesComponent } from './more-types';
 		NzDemoAlertEnComponent,
     NzDemoAlertMoreTypesComponent
 
-  ]
+  ],
+  exports: [
+    NzDemoAlertBannerComponent,
+		NzDemoAlertBasicComponent,
+		NzDemoAlertClosableComponent,
+		NzDemoAlertCloseTextComponent,
+		NzDemoAlertDescriptionComponent,
+		NzDemoAlertIconComponent,
+		NzDemoAlertEnComponent,
+    NzDemoAlertMoreTypesComponent
+  ],
 })
 export class NzDemoAlertModule {
 

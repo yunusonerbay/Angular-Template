@@ -17,6 +17,8 @@ import { SignUp1Component } from './sign-up-1/sign-up-1.component';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
 import { LanguagePipe } from '../shared/pipes/language.pipe';
 import { VerifyComponent } from './verify/verify.component';
+import { NzDemoAlertModule } from '../components/alert/index.module';
+import { NzDemoAlertDescriptionComponent } from '../components/alert/description';
 
 
 const antdModule= [
@@ -34,6 +36,7 @@ const antdModule= [
         SharedModule,
         ReactiveFormsModule,
         AuthenticationRoutingModule,
+        NzDemoAlertModule,
         ...antdModule
     ],
     declarations: [
@@ -41,7 +44,8 @@ const antdModule= [
         SignUp1Component,
         ForgetPassComponent,
         LanguagePipe,
-        VerifyComponent
+        VerifyComponent,
+        
     ]
 })
 

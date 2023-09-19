@@ -3,7 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'nz-demo-alert-description',
   template: `
-    <nz-alert class="[&>.ant-alert]:bg-success/10 [&>.ant-alert]:border-none [&>.ant-alert>div>span]:text-success [&>.ant-alert]:px-[20px] [&>.ant-alert]:py-[16.5px] [&>.ant-alert]:rounded-4 capitalize text-[15px]" nzMessage="Success Text" nzDescription="Success Description Success Description Success Description">
+    <nz-alert 
+    class="[&>.ant-alert]:bg-success/10 [&>.ant-alert]:border-none [&>.ant-alert>div>span]:text-success [&>.ant-alert]:px-[20px] [&>.ant-alert]:py-[16.5px] [&>.ant-alert]:rounded-4 capitalize text-[15px]" 
+    nzMessage="Success Text" 
+    nzDescription="Success Description Success Description Success Description">
     </nz-alert>
     <nz-alert class="[&>.ant-alert]:bg-info/10 [&>.ant-alert]:border-none [&>.ant-alert>div>span]:text-info [&>.ant-alert]:px-[20px] [&>.ant-alert]:py-[16.5px] [&>.ant-alert]:rounded-4 capitalize text-[15px]" nzMessage="Info Text" nzDescription="Info Description Info Description Info Description Info Description">
     </nz-alert>

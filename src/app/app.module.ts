@@ -26,6 +26,7 @@ import { AuthenticationService } from './shared/services/authentication.service'
 import { LanguageService } from './shared/services/language.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
+import { HttpErrorHandlerInterceptorService } from './shared/services/http-error-handler-interceptor.service';
 
 registerLocaleData(en);
 
@@ -71,9 +72,14 @@ export function setupTranslateFactory(
           },
           {
             provide:HTTP_INTERCEPTORS,
-             useClass:AuthInterceptor, 
+             useClass:AuthInterceptor,  
              multi:true
             },
+            {
+                provide: HTTP_INTERCEPTORS,
+                useClass: HttpErrorHandlerInterceptorService,
+                multi: true,
+              },
         ThemeConstantService,
         AuthenticationService,
       

@@ -9,16 +9,15 @@ import { ItemResponseModel } from 'src/app/models/response/itemResponseModel';
 import { TokenModel } from 'src/app/models/tokenModel';
 import { LocalStorageService } from './local-storage.service';
 import { VerifyModel } from 'src/app/models/request/verifyModel';
+import { environment } from 'src/environments/environment';
 
-const USER_AUTH_API_URL = '/api-url';
 
 @Injectable()
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-    // controllerUrl : string = `https://localhost:7068/api/Auth`;
-    controllerUrl : string = `https://localhost:44356/api/Auth2`;
 
+    controllerUrl : string = `${environment.apiUrl}/auth`;
 
     constructor(
         private http: HttpClient, 
@@ -46,26 +45,24 @@ export class AuthenticationService {
           }));
     }
 
-
-
     isAuthenticated(){
         return this.localStorageService.get("tokenModel") ? true : false
     }
 
-    login2(loginModel : LoginModel) {
-        return this.http.post<any>(USER_AUTH_API_URL, loginModel)
-        .pipe(map(user => {
-            console.log(user);
-            if (user && user.token) {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-            }
-            return user;
-        }));
-    }
+    // login2(loginModel : LoginModel) {
+    //     return this.http.post<any>(USER_AUTH_API_URL, loginModel)
+    //     .pipe(map(user => {
+    //         console.log(user);
+    //         if (user && user.token) {
+    //             localStorage.setItem('currentUser', JSON.stringify(user));
+    //             this.currentUserSubject.next(user);
+    //         }
+    //         return user;
+    //     }));
+    // }
 
-    logout() {
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
-    }
+    // logout() {
+    //     localStorage.removeItem('currentUser');
+    //     this.currentUserSubject.next(null);
+    // }
 }

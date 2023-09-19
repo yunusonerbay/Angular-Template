@@ -17,29 +17,22 @@ export class Login1Component {
   isLoading = false;
   error = false;
   socialMediaButtons = socialIcons.socialMediaButtons;
-  validateForm!: FormGroup;
-  SignIn:string
+  validateForm: FormGroup;
+  SignIn:string;
+  errorMessage: string;
 
   constructor(private fb: FormBuilder,
      private router: Router,
-      private location: Location,
       private authenticationService : AuthenticationService,
       private localStorageService:LocalStorageService,
       private languageService :LanguageService,) {}
 
   submitForm(): void {
     if (this.validateForm.valid) {
-
       const loginModel: LoginModel = {
-        lang : "TR",
-        phoneCountry :"TR",
-        phoneNumber:"5380559663",
-        password :"258258",
-        ip:"100.10.10.11",
-        deviceId : "B22AA83C-2F55-43B8-A88E-DB56618F0312",
-        deviceModel :"string"
+        email:this.validateForm.value.email,
+        password :this.validateForm.value.password,
       };
-      
       debugger;
       this.authenticationService.login(loginModel).subscribe({
         next: (response) => {
@@ -75,7 +68,7 @@ export class Login1Component {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      userName: ['', [Validators.required]],
+      email: ['', [Validators.required,Validators.email]],
       password: ['', [Validators.required]],
       remember: [true],
     });

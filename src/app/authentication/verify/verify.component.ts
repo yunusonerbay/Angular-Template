@@ -31,16 +31,10 @@ export class VerifyComponent implements OnInit {
   submitForm(): void {
     if (this.myForm.valid) {
 
-        console.log(this.myForm);
-        console.log(this.myForm.value.verifyCode);
-
         const verifyModel: VerifyModel = {
-          code: `${this.myForm.value.verifyCode}`,
-          ip: "100.10.10.11", 
+          code: this.myForm.value.verifyCode,
           methodName: "verifycode",
-          provider: "S",
-          deviceId: "B22AA83C-2F55-43B8-A88E-DB56618F0312",
-          deviceToken :''
+          provider: "E"
         };
   
         this.authenticationService.verify(verifyModel).subscribe({
@@ -54,9 +48,6 @@ export class VerifyComponent implements OnInit {
             console.log(e);
           },
         });
-
-
-
     } else {
       Object.values(this.myForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -66,8 +57,5 @@ export class VerifyComponent implements OnInit {
       });
     }
   }
-
-
-
 }
 
