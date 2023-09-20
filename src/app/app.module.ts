@@ -48,17 +48,10 @@ export function setupTranslateFactory(service: LanguageService): Function {
     NzSpinModule,
     NgChartsModule,
     NgApexchartsModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-top-right', // Toastr'ın görüntüleneceği pozisyonu ayarlayın
-      preventDuplicates: true, // Tekrar eden mesajları önleyin
-      closeButton: true, // Kapatma düğmesini gösterin
-      timeOut: 30000, // Mesajın otomatik olarak kaybolma süresini ayarlayın
-      progressBar: true, // İlerleme çubuğunu gösterin
-      toastClass: 'ngx-toastr', // Toastr için özel stil sınıfını belirtin
-      titleClass: 'toast-title', // Başlık için özel stil sınıfını belirtin
-      messageClass: 'toast-message', // Mesaj için özel stil sınıfını belirtin
-    }),
-    AngularSvgIconModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    AngularSvgIconModule.forRoot(
+    ),
   ],
   providers: [
     {

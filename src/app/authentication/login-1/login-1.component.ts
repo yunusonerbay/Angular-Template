@@ -7,7 +7,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 import { LoginModel } from './../../models/request/loginModel';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
     templateUrl: './login-1.component.html'
 })
@@ -25,7 +25,9 @@ export class Login1Component {
      private router: Router,
       private authenticationService : AuthenticationService,
       private localStorageService:LocalStorageService,
-      private languageService :LanguageService,) {}
+      private languageService :LanguageService,
+      private toastrService: ToastrService
+      ) {}
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -33,7 +35,6 @@ export class Login1Component {
         email:this.validateForm.value.email,
         password :this.validateForm.value.password,
       };
-      debugger;
       this.authenticationService.login(loginModel).subscribe({
         next: (response) => {
           console.log(response);
@@ -41,6 +42,11 @@ export class Login1Component {
           this.router.navigate(['authentication/verify']).then(() => { window.location.reload();  });
         },
         error: (e) => {
+          debugger;
+          this.toastrService.success('everything is broken', 'Major Error', {
+            timeOut: 50000,
+            positionClass: 'toast-bottom-right',
+          });
           console.log(e);
         },
       });

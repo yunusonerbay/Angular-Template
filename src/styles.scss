@@ -4,17 +4,51 @@
 @tailwind utilities;
 
 
+@layer components {
+  .toast-warning{
+    @apply bg-warning/10 bg-none border-none px-[20px] py-[16.5px] rounded-4;
+  }
+  .toast-title-warning {
+    @apply text-[18px] font-semibold text-warning
+  }
+  .toast-message-warning {
+    @apply text-[15px] font-medium text-warning
+  }
 
+  .toast-success{
+    @apply bg-success/10 bg-none border-none px-[20px] py-[16.5px] rounded-4;
+  }
+  .toast-title-success {
+    @apply text-[18px] font-semibold text-success
+  }
+  .toast-message-success {
+    @apply text-[15px] font-medium text-success
+  }
 
-
+  .toast-error{
+    @apply bg-danger/10 bg-none border-none px-[20px] py-[16.5px] rounded-4;
+  }
+  .toast-title-error {
+    @apply text-[18px] font-semibold text-danger
+  }
+  .toast-message-error {
+    @apply text-[15px] font-medium text-danger
+  }
+  
+  .toast-info{
+    @apply bg-info/10 bg-none border-none px-[20px] py-[16.5px] rounded-4;
+  }
+  .toast-title-info {
+    @apply text-[18px] font-semibold text-info
+  }
+  .toast-message-info {
+    @apply text-[15px] font-medium text-info
+  }
+ 
 // 3rd party libraries
-
+  }
 // Theme customization
 @import './assets/scss/app.scss';
 
 
-@layer base {
-    .ngx-toastr{
-      @apply bg-red-300
-  }
-}
+

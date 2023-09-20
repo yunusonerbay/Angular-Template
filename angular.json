@@ -37,9 +37,9 @@
               }
             ],
             "styles": [
+              "node_modules/ngx-toastr/toastr.css",
               "src/theme.less",
               "src/styles.scss",
-              "node_modules/ngx-toastr/toastr.css",
               "./node_modules/svgmap/dist/svgMap.min.css"
             ],
             "scripts": [
