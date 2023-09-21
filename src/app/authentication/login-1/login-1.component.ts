@@ -42,11 +42,6 @@ export class Login1Component {
           this.router.navigate(['authentication/verify']).then(() => { window.location.reload();  });
         },
         error: (e) => {
-          debugger;
-          this.toastrService.success('everything is broken', 'Major Error', {
-            timeOut: 50000,
-            positionClass: 'toast-bottom-right',
-          });
           console.log(e);
         },
       });

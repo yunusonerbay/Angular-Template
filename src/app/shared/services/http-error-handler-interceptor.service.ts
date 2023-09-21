@@ -37,7 +37,7 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
           this.toastrService.message(error.error.message,"Hata!",{
             messageType: ToastrMessageType.Warning,
             position: ToastrPosition.TopRight,
-            timeOut:ToastrTimeOut.Tensn,
+            timeOut:ToastrTimeOut.fivesn,
             messageClass:ToastrMessageClass.Warning,
             titleClass:ToastrTitleClass.Warning,
             toastClass:ToastrToastClass.Warning
@@ -58,7 +58,7 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
           this.toastrService.message("Beklenmeyen bir hata meydana gelmiştir!", "Hata!", {
             messageType: ToastrMessageType.Warning,
             position: ToastrPosition.TopRight,
-            timeOut:ToastrTimeOut.fivesn,
+            timeOut:ToastrTimeOut.Tensn,
             messageClass:ToastrMessageClass.Warning,
             titleClass:ToastrTitleClass.Warning,
             toastClass:ToastrToastClass.Warning

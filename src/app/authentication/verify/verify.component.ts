@@ -32,17 +32,20 @@ export class VerifyComponent implements OnInit {
     if (this.myForm.valid) {
 
         const verifyModel: VerifyModel = {
-          code: this.myForm.value.verifyCode,
+          code: `${this.myForm.value.verifyCode}`,
           methodName: "verifycode",
-          provider: "E"
+          provider: "E",
+          Ip :"string",
+          deviceId:"string",
+          deviceToken:"string"
         };
-  
+
         this.authenticationService.verify(verifyModel).subscribe({
           next: (response) => {
             console.log(response);
             this.localStorageService.set(response.data,"tokenModel")
             this.localStorageService.remove("loginTokenModel")
-            this.router.navigate(['dashboard/demo-two']).then(() => { window.location.reload();  });
+            this.router.navigate(['dashboard/transaction']).then(() => { window.location.reload();  });
           },
           error: (e) => {
             console.log(e);

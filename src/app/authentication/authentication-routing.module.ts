@@ -26,7 +26,7 @@ const routes: Routes = [
       component: ForgetPassComponent,
       data: {
           title: 'forget-pass'
-    },  
+    }        
   },
   {
     path: 'verify',

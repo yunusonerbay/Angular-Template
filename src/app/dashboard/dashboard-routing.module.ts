@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DemoTwoDashboardComponent } from './demo-two/demo-two.component';
+import { TransactionComponent } from './transaction/transaction.component';
 import { LoginGuard } from '../shared/guards/login.guard';
 import { DashboardComponent } from './dashboard.component';
 
 
 const routes: Routes = [
+
     {
         path: '',
         component: DashboardComponent,
         data: {
-            title: 'Yunus dashboard',
-        }
-    },
+            title: 'Dashboard',
+        },
+      },
     {
-        path: 'demo-two',
-        component: DemoTwoDashboardComponent,
+        path: 'transaction',
+        component: TransactionComponent,
         data: {
             title: 'Yunus',
         },

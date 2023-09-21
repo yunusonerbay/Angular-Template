@@ -32,7 +32,7 @@ import { PerfectScrollbarModule } from 'ngx-om-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-om-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-om-perfect-scrollbar';
 
-import { DemoTwoDashboardComponent } from './demo-two/demo-two.component';
+import { TransactionComponent } from './transaction/transaction.component';
 import { OverviewListComponent } from '../container/dashboard/demoTwo/overviewList.component';
 import { SaleRevenueComponent } from '../container/dashboard/demoTwo/salesRevenue.component';
 import { SourceRevenueGenerated } from '../container/dashboard/demoTwo/sourceRevenueGenerated.component';
@@ -85,7 +85,7 @@ const antdModule = [
       SourceRevenueGenerated
     ],
     declarations: [
-        DemoTwoDashboardComponent,
+       TransactionComponent,
         OverviewListComponent,
         SaleRevenueComponent,
         SourceRevenueGenerated,

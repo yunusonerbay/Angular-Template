@@ -1,10 +1,10 @@
 import { Component } from '@angular/core'
 
 @Component({
-    templateUrl: './demo-two.component.html'
+    templateUrl: './transaction.component.html'
 })
 
-export class DemoTwoDashboardComponent {
+export class TransactionComponent {
   isLoading = true;
   showContent = false;
 

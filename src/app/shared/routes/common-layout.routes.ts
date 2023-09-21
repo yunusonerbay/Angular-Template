@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { ComponentsComponent } from '../../components/components.component'
 import { LoginGuard } from '../../shared/guards/login.guard';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
-import { DemoTwoDashboardComponent } from 'src/app/dashboard/demo-two/demo-two.component';
 export const CommonLayout_ROUTES: Routes = [
 
     // Dashboard
