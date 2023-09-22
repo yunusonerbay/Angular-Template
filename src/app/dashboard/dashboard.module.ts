@@ -39,6 +39,8 @@ import { SourceRevenueGenerated } from '../container/dashboard/demoTwo/sourceRev
 import { NewProductComponent } from '../container/dashboard/demoTwo/newProduct.component';
 import { BestSellerComponent } from '../container/dashboard/demoTwo/bestSeller.component';
 import { DashboardComponent } from './dashboard.component';
+import {  EndpointsComponent } from './endpoints/endpoints.component';
+import { FeaturesModule } from '../features/features.module';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -77,6 +79,7 @@ const antdModule = [
         CommonModule,
         SharedModule,
         DashboardRoutingModule,
+        FeaturesModule,
         ...antdModule
     ],
     exports: [
@@ -91,7 +94,8 @@ const antdModule = [
         SourceRevenueGenerated,
         NewProductComponent,
         BestSellerComponent,
-        DashboardComponent
+        DashboardComponent,
+        EndpointsComponent
     ],
     providers: [
         ThemeConstantService,

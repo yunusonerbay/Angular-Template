@@ -663,6 +663,15 @@
   @apply mr-auto me-[4px];
 }
 
+.ant-spin-dot-item{
+  @apply bg-primary
+}
+
+::selection {
+  @apply bg-primary
+}
+
+
 /*------ Vector Map Tooltip -------*/
 /* vector map */
 .svgMap-tooltip {

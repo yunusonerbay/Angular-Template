@@ -116,7 +116,6 @@ const antdModule = [
   NzSliderModule,
   NzTableModule,
   EditorModule,
-  DashboardModule,
   AppsModule,
   NzProgressModule,
   NzAvatarModule,
@@ -132,6 +131,9 @@ const antdModule = [
         NzCardModule,
         HttpClientModule,
         ...antdModule
+    ],
+    exports:[
+        antdModule
     ],
     declarations: [
         ChartjsComponent,
