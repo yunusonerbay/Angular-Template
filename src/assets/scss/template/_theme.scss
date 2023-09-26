@@ -670,6 +670,20 @@
 ::selection {
   @apply bg-primary
 }
+.ant-btn-primary{
+  @apply bg-primary border-primary hover:border-primary-hbr hover:bg-primary-hbr focus:border-primary-hbr focus:bg-primary-hbr
+}
+
+.ant-modal-footer {
+  @apply flex items-center justify-end
+}
+
+.ant-switch{
+  @apply bg-normal dark:bg-white/10;
+}
+ .ant-switch.ant-switch-checked{
+  @apply bg-primary;
+}
 
 
 /*------ Vector Map Tooltip -------*/

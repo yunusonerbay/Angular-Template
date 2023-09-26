@@ -31,6 +31,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 import { HttpErrorHandlerInterceptorService } from './shared/services/http-error-handler-interceptor.service';
 import { ApplicationsService } from './shared/services/applications.service';
+import { RolesService } from './shared/services/roles.service';
 
 registerLocaleData(en);
 
@@ -81,7 +82,8 @@ export function setupTranslateFactory(service: LanguageService): Function {
     },
     ThemeConstantService,
     AuthenticationService,
-    ApplicationsService
+    ApplicationsService,
+    RolesService
   ],
   bootstrap: [AppComponent],
 })

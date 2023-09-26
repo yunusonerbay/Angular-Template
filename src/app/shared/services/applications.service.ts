@@ -4,6 +4,11 @@ import { tap } from 'rxjs';
 import { ItemResponseModel } from 'src/app/models/response/itemResponseModel';
 import { TokenModel } from 'src/app/models/tokenModel';
 import { environment } from 'src/environments/environment';
+import { Menu } from 'src/app/models/response/menuResponseModel';
+import { RolesToEndpointResponse } from 'src/app/models/response/rolesToEndpointResponseModel';
+import { RolesToEndpoint } from 'src/app/models/request/rolesToEndpoint';
+import { AssignRoleEndpoint } from 'src/app/models/request/assignRoleEndpointModel';
+import { ResponseModel } from 'src/app/models/response/responseModel';
 
 
 @Injectable()
@@ -14,12 +19,23 @@ export class ApplicationsService {
     constructor(private http: HttpClient ) {
     
     }
-    async GetAuthorizeDefinitionEndpoints(){
-        return this.http.get<ItemResponseModel<TokenModel>>(`${this.controllerUrl}/GetAuthorizeDefinitionEndpoints`)
+    async getAuthorizeDefinitionEndpoints(){
+        return this.http.get<ItemResponseModel<Menu[]>>(`${this.controllerUrl}/GetAuthorizeDefinitionEndpoints`)
         .pipe(tap((response) => {
           }));
     }
 
+    async  getRolesToEndpoint(RolesToEndpoint: RolesToEndpoint){
+        return this.http.post<ItemResponseModel<RolesToEndpointResponse[]>>(`${this.controllerUrl}/GetRolesToEndpoint`,RolesToEndpoint)
+        .pipe(tap((response) => {
+          }));
+    }
+
+    async  assignRoleEndpoint(AssignRoleEndpoint: AssignRoleEndpoint){
+      return this.http.post<ResponseModel>(`${this.controllerUrl}/AssignRoleEndpoint`,AssignRoleEndpoint)
+      .pipe(tap((response) => {
+        }));
+  }
 
  
 }
