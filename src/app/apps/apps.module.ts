@@ -46,8 +46,8 @@ import { headerDetailsComponent } from './projects/project-details/header';
 import { ProgressDetailsComponent } from './projects/project-details/progress';
 import { AboutProjectComponent } from './projects/project-details/about-project';
 import { UsersComponent } from './projects/project-details/users-project';
-import { TaskActivitiesComponent} from './projects/project-details/task-activities';
-import { TabComponent} from './projects/project-details/tab.component';
+import { TaskActivitiesComponent } from './projects/project-details/task-activities';
+import { TabComponent } from './projects/project-details/tab.component';
 import { FileComponent } from './projects/project-details/file';
 
 /* Chat Components */
@@ -76,94 +76,91 @@ import { UploadComponent } from './import-export/import/upload';
 import { TableComponent } from './import-export/export/table';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
+  suppressScrollX: true,
 };
 
 const antdModule = [
-    NzButtonModule,
-    NzCardModule,
-    NzAvatarModule,
-    NzRateModule,
-    NzBadgeModule,
-    NzProgressModule,
-    NzRadioModule,
-    NzTableModule,
-    NzDropDownModule,
-    NzTimelineModule,
-    NzTabsModule,
-    NzTagModule,
-    NzListModule,
-    NzCalendarModule,
-    NzToolTipModule,
-    NzFormModule,
-    NzModalModule,
-    NzSelectModule,
-    NzUploadModule,
-    NzInputModule,
-    NzPaginationModule,
-    NzDatePickerModule,
-    NzCheckboxModule,
-    NzMessageModule,
-    NzSkeletonModule,
-    EditorModule,
-    AngularSvgIconModule.forRoot(),
-    DragDropModule,
-    PerfectScrollbarModule,
-]
+  NzButtonModule,
+  NzCardModule,
+  NzAvatarModule,
+  NzRateModule,
+  NzBadgeModule,
+  NzProgressModule,
+  NzRadioModule,
+  NzTableModule,
+  NzDropDownModule,
+  NzTimelineModule,
+  NzTabsModule,
+  NzTagModule,
+  NzListModule,
+  NzCalendarModule,
+  NzToolTipModule,
+  NzFormModule,
+  NzModalModule,
+  NzSelectModule,
+  NzUploadModule,
+  NzInputModule,
+  NzPaginationModule,
+  NzDatePickerModule,
+  NzCheckboxModule,
+  NzMessageModule,
+  NzSkeletonModule,
+  EditorModule,
+  AngularSvgIconModule.forRoot(),
+  DragDropModule,
+  PerfectScrollbarModule,
+];
 
 @NgModule({
-    imports: [
-        SharedModule,
-        AppsRoutingModule,
-        QuillModule.forRoot(),
-        ...antdModule,
-    ],
-    exports: [
-      FileComponent,
-    ],
-    declarations: [
-        ChatComponent,
-        TodoListComponent,
-        ProjectListComponent,
-        ProjectDetailsComponent,
-        ContactGridComponent,
-        ContactListComponent,
-        InboxComponent,
-        ReadEmailComponent,
-        TruncatePipe,
-        ChatContentsComponent,
-        ChatAsideComponent,
-        InboxSidebar,
-        headerDetailsComponent,
-        ProgressDetailsComponent,
-        AboutProjectComponent,
-        UsersComponent,
-        TaskActivitiesComponent,
-        TabComponent,
-        FileComponent,
-        SupportComponent,
-        ViewSupportComponent,
-        AddSupportComponent,
-        TicketOverviewComponent,
-        TicketTableComponent,
-        HelpCardComponent,
-        GoBackComponent,
-        FileAttachmentComponent,
-        TicketUserComponent,
-        ImportComponent,
-        ExportComponent,
-        UploadComponent,
-        TableComponent,
-    ],
-    providers: [
-        ThemeConstantService,
-        AppsService,
-        TableService,
-        {
-          provide: PERFECT_SCROLLBAR_CONFIG,
-          useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-        }
-    ]
+  imports: [
+    SharedModule,
+    AppsRoutingModule,
+    QuillModule.forRoot(),
+    ...antdModule,
+  ],
+  exports: [FileComponent],
+  declarations: [
+    ChatComponent,
+    TodoListComponent,
+    ProjectListComponent,
+    ProjectDetailsComponent,
+    ContactGridComponent,
+    ContactListComponent,
+    InboxComponent,
+    ReadEmailComponent,
+    TruncatePipe,
+    ChatContentsComponent,
+    ChatAsideComponent,
+    InboxSidebar,
+    headerDetailsComponent,
+    ProgressDetailsComponent,
+    AboutProjectComponent,
+    UsersComponent,
+    TaskActivitiesComponent,
+    TabComponent,
+    FileComponent,
+    SupportComponent,
+    ViewSupportComponent,
+    AddSupportComponent,
+    TicketOverviewComponent,
+    TicketTableComponent,
+    HelpCardComponent,
+    GoBackComponent,
+    FileAttachmentComponent,
+    TicketUserComponent,
+    ImportComponent,
+    ExportComponent,
+    UploadComponent,
+    TableComponent,
+  ],
+  providers: [
+    ThemeConstantService,
+    AppsService,
+    TableService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
+  ],
 })
-
 export class AppsModule {}

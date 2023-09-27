@@ -52,12 +52,7 @@
                       <td>
                         <button
                           (click)="
-                            showRoles(
-                              newShowContent,
-                              action.code,
-                              menu.name,
-                              action.type
-                            )
+                            showRoles(newShowContent, action.code, menu.name)
                           "
                           nz-button=""
                           class="ant-btn capitalize bg-dark/10 hover:bg-dark-hbr border-none text-dark hover:text-white text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center gap-1 rounded-[4px] px-[20px] h-[44px]"
@@ -95,12 +90,11 @@
 <div nz-col nzXs="24" nzMd="12">
   <ng-template #newShowContent>
     <form #roleForm="ngForm" nz-form nzLayout="vertical">
-      <div class="flex items-center justify-end px-3">
-        <!-- <nz-badge [nzCount]="endpointToRoleResponseCount" nzShowZero>
-          <a
-            class="rounded-4 bg-[#f4f5f7] dark:bg-white/10 inline-block align-middle"
-          ></a>
-        </nz-badge> -->
+      <div class="flex items-center justify-between px-3">
+        <span class="text-sm text-black font-medium"
+          >Ekli olduğu rol sayısı:</span
+        >
+        <nz-badge [nzCount]="count()" nzShowZero></nz-badge>
       </div>
       <nz-form-item>
         <nz-form-control>

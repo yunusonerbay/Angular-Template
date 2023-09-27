@@ -9,33 +9,55 @@ import { RolesToEndpointResponse } from 'src/app/models/response/rolesToEndpoint
 import { RolesToEndpoint } from 'src/app/models/request/rolesToEndpoint';
 import { AssignRoleEndpoint } from 'src/app/models/request/assignRoleEndpointModel';
 import { ResponseModel } from 'src/app/models/response/responseModel';
-
+import { RolesToUser } from 'src/app/models/request/rolesToUserModel';
+import { AssignRoleToUser } from 'src/app/models/request/assignRoleToUserModel';
 
 @Injectable()
 export class ApplicationsService {
+  controllerUrl: string = `${environment.apiUrl}/Authorization`;
 
-    controllerUrl : string = `${environment.apiUrl}/Authorization`;
-
-    constructor(private http: HttpClient ) {
-    
-    }
-    async getAuthorizeDefinitionEndpoints(){
-        return this.http.get<ItemResponseModel<Menu[]>>(`${this.controllerUrl}/GetAuthorizeDefinitionEndpoints`)
-        .pipe(tap((response) => {
-          }));
-    }
-
-    async  getRolesToEndpoint(RolesToEndpoint: RolesToEndpoint){
-        return this.http.post<ItemResponseModel<RolesToEndpointResponse[]>>(`${this.controllerUrl}/GetRolesToEndpoint`,RolesToEndpoint)
-        .pipe(tap((response) => {
-          }));
-    }
-
-    async  assignRoleEndpoint(AssignRoleEndpoint: AssignRoleEndpoint){
-      return this.http.post<ResponseModel>(`${this.controllerUrl}/AssignRoleEndpoint`,AssignRoleEndpoint)
-      .pipe(tap((response) => {
-        }));
+  constructor(private http: HttpClient) {}
+  async getAuthorizeDefinitionEndpoints() {
+    return this.http
+      .get<ItemResponseModel<Menu[]>>(
+        `${this.controllerUrl}/GetAuthorizeDefinitionEndpoints`
+      )
+      .pipe(tap((response) => {}));
   }
 
- 
+  async getRolesToEndpoint(RolesToEndpoint: RolesToEndpoint) {
+    return this.http
+      .post<ItemResponseModel<RolesToEndpointResponse[]>>(
+        `${this.controllerUrl}/GetRolesToEndpoint`,
+        RolesToEndpoint
+      )
+      .pipe(tap((response) => {}));
+  }
+
+  async getRolesToUser(RolesToUser: RolesToUser) {
+    return this.http
+      .post<ItemResponseModel<string[]>>(
+        `${this.controllerUrl}/GetRolesToUser`,
+        RolesToUser
+      )
+      .pipe(tap((response) => {}));
+  }
+
+  async assignRoleEndpoint(AssignRoleEndpoint: AssignRoleEndpoint) {
+    return this.http
+      .post<ResponseModel>(
+        `${this.controllerUrl}/AssignRoleEndpoint`,
+        AssignRoleEndpoint
+      )
+      .pipe(tap((response) => {}));
+  }
+
+  async assignRoleUser(assignRoleToUser: AssignRoleToUser) {
+    return this.http
+      .post<ResponseModel>(
+        `${this.controllerUrl}/AssignRoleToUser`,
+        assignRoleToUser
+      )
+      .pipe(tap((response) => {}));
+  }
 }

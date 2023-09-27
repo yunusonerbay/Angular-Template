@@ -2,19 +2,26 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import * as XLSX from 'xlsx';
-
-interface Employee {
-  id: number;
-  name: string;
-  email: string;
-  company: string;
-  position: string;
-  joinDate: string;
-  selected: boolean;
-}
+import { UsersService } from 'src/app/shared/services/users.service';
+import { User } from 'src/app/models/response/userResponseModel';
+import { Role } from 'src/app/models/response/roleResponseModel';
+import { RolesToEndpointResponse } from 'src/app/models/response/rolesToEndpointResponseModel';
+import { ApplicationsService } from 'src/app/shared/services/applications.service';
+import { RolesService } from 'src/app/shared/services/roles.service';
+import {
+  CustomToastrService,
+  ToastrMessageClass,
+  ToastrMessageType,
+  ToastrPosition,
+  ToastrTimeOut,
+  ToastrTitleClass,
+  ToastrToastClass,
+} from 'src/app/shared/services/ui/custom-toastr.service';
+import { AssignRoleToUser } from 'src/app/models/request/assignRoleToUserModel';
+import { RolesToUser } from 'src/app/models/request/rolesToUserModel';
 
 @Component({
-  selector: 'app-table',
+  selector: 'user-list',
   template: `
     <div
       class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative "
@@ -102,27 +109,32 @@ interface Employee {
                 <th
                   class="bg-[#f8f9fb] dark:bg-[#323440] px-4 py-3.5 text-start text-theme-gray dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize"
                 >
-                  user
+                  Username
                 </th>
                 <th
                   class="bg-[#f8f9fb] dark:bg-[#323440] px-4 py-3.5 text-start text-theme-gray dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize"
                 >
-                  email
+                  Email
                 </th>
                 <th
                   class="bg-[#f8f9fb] dark:bg-[#323440] px-4 py-3.5 text-start text-theme-gray dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize"
                 >
-                  company
+                  Phone
                 </th>
                 <th
                   class="bg-[#f8f9fb] dark:bg-[#323440] px-4 py-3.5 text-start text-theme-gray dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize"
                 >
-                  position
+                  Company
+                </th>
+                <th
+                  class="bg-[#f8f9fb] dark:bg-[#323440] px-4 py-3.5 text-start text-theme-gray dark:text-white/[.87] text-[15px] font-medium border-none before:hidden rounded-e-[6px] capitalize"
+                >
+                  Status
                 </th>
                 <th
                   class="bg-[#f8f9fb] dark:bg-[#323440] px-4 py-3.5 text-end text-theme-gray dark:text-white/[.87] text-[15px] font-medium border-none before:hidden rounded-e-[6px] capitalize"
                 >
-                  Join date
+                  Add Role
                 </th>
               </tr>
             </thead>
@@ -134,9 +146,9 @@ interface Employee {
                   (nzCheckedChange)="onItemChecked(data.id, $event)"
                 ></td>
                 <td
-                  class="px-4 py-2.5 font-normal last:text-end capitalize text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent"
+                  class="px-4 py-2.5 font-normal last:text-end  text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent"
                 >
-                  {{ data.name }}
+                  {{ data.userName }}
                 </td>
                 <td
                   class="px-4 py-2.5 font-normal last:text-end lowercase text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent"
@@ -144,19 +156,42 @@ interface Employee {
                   {{ data.email }}
                 </td>
                 <td
-                  class="px-4 py-2.5 font-normal last:text-end capitalize text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent"
+                  class="px-4 py-2.5 font-normal last:text-end  text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent"
+                >
+                  {{ data.phoneNumber }}
+                </td>
+                <td
+                  class="px-4 py-2.5 font-normal last:text-end  text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent"
                 >
                   {{ data.company }}
                 </td>
                 <td
-                  class="px-4 py-2.5 font-normal last:text-end capitalize text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent"
+                  class="ps-4 pe-4 py-2.5 font-normal last:text-end  text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent rounded-e-[6px]"
                 >
-                  {{ data.position }}
+                  {{ data.status }}
                 </td>
                 <td
-                  class="ps-4 pe-4 py-2.5 font-normal last:text-end capitalize text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent rounded-e-[6px]"
+                  class="ps-4 pe-4 py-2.5 font-normal last:text-end  text-[14px] text-dark dark:text-white/[.87] border-none group-hover:bg-transparent rounded-e-[6px]"
                 >
-                  {{ data.joinDate }}
+                  <button
+                    (click)="showRoles(newShowContent, data.id)"
+                    nz-button=""
+                    class="ant-btn capitalize bg-dark/10 hover:bg-dark-hbr border-none text-dark hover:text-white text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center gap-1 rounded-[4px] px-[20px] h-[44px]"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      id="plus-circle"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z"
+                      ></path>
+                    </svg>
+                    <span class="ng-star-inserted">Role Ata</span>
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -173,24 +208,59 @@ interface Employee {
         </div>
       </div>
     </div>
+
+    <div nz-col nzXs="24" nzMd="12">
+      <ng-template #newShowContent>
+        <form #roleForm="ngForm" nz-form nzLayout="vertical">
+          <div class="flex items-center justify-between px-3">
+            <span class="text-sm text-black font-medium"
+              >Ekli olduğu rol sayısı:</span
+            >
+            <nz-badge [nzCount]="count()" nzShowZero></nz-badge>
+          </div>
+          <nz-form-item>
+            <nz-form-control>
+              <div
+                *ngFor="let role of roles; let i = index"
+                class="flex items-center justify-between p-4 shadow-md text-black font-medium rounded-4 text-sm"
+              >
+                <span>{{ role.name }}</span>
+                <nz-switch
+                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="role.status"
+                ></nz-switch>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </ng-template>
+    </div>
   `,
 })
-export class TableComponent implements OnInit {
+export class UserListComponent implements OnInit {
   checked = false;
   indeterminate = false;
   pageIndex = 1; // Current page index
   pageSize = 10; // Number of items per page
-  listOfCurrentPageData: Employee[] = []; // Remove 'readonly'
-  listOfData: Employee[] = [];
-  setOfCheckedId = new Set<number>();
+  listOfCurrentPageData: User[] = []; // Remove 'readonly'
+  listOfData: User[] = [];
+  setOfCheckedId = new Set<string>();
   fileName: string = '';
   exportFormat: string | undefined;
-  fullListOfData: Employee[] = [];
+  fullListOfData: User[] = [];
   searchQuery: string = '';
+  roles: Role[] = [];
+  userToRoleResponse: string[];
 
-  constructor(private http: HttpClient, private modalService: NzModalService) {}
+  constructor(
+    private modalService: NzModalService,
+    private userService: UsersService,
+    private applicationsService: ApplicationsService,
+    private roleService: RolesService,
+    private toastrService: CustomToastrService
+  ) {}
 
-  updateCheckedSet(id: number, checked: boolean): void {
+  updateCheckedSet(id: string, checked: boolean): void {
     if (checked) {
       this.setOfCheckedId.add(id);
     } else {
@@ -198,20 +268,19 @@ export class TableComponent implements OnInit {
     }
   }
 
-  onItemChecked(id: number, checked: boolean): void {
+  onItemChecked(id: string, checked: boolean): void {
     this.updateCheckedSet(id, checked);
     this.refreshCheckedStatus();
   }
 
   onAllChecked(value: boolean): void {
-    debugger;
     this.listOfCurrentPageData.forEach((item) =>
       this.updateCheckedSet(item.id, value)
     );
     this.refreshCheckedStatus();
   }
 
-  onCurrentPageDataChange($event: Employee[]): void {
+  onCurrentPageDataChange($event: User[]): void {
     this.listOfCurrentPageData = $event;
     this.refreshCheckedStatus();
   }
@@ -225,41 +294,39 @@ export class TableComponent implements OnInit {
         this.setOfCheckedId.has(item.id)
       ) && !this.checked;
   }
-
   ngOnInit(): void {
     this.loadEmployeeData();
   }
 
-  loadEmployeeData(): void {
-    this.http
-      .get<Employee[]>('assets/data/pages/employees-data.json')
-      .subscribe(
-        (data) => {
-          this.fullListOfData = data; // Store the full data separately
+  async loadEmployeeData(): Promise<void> {
+    let users = await this.userService.getUsers(7136);
+    users.subscribe({
+      next: (data) => {
+        console.log(data);
+        this.fullListOfData = data.data; // Store the full data separately
 
-          // Calculate the start and end index for the current page
-          const startIndex = (this.pageIndex - 1) * this.pageSize;
-          const endIndex = startIndex + this.pageSize;
+        // Calculate the start and end index for the current page
+        const startIndex = (this.pageIndex - 1) * this.pageSize;
+        const endIndex = startIndex + this.pageSize;
 
-          // Slice the full data to get the data for the current page
-          this.listOfData = this.fullListOfData.slice(startIndex, endIndex);
+        // Slice the full data to get the data for the current page
+        this.listOfData = this.fullListOfData.slice(startIndex, endIndex);
 
-          this.onSearch(this.searchQuery); // Trigger initial filtering
-        },
-        (error) => {
-          console.error('Error loading employee data:', error);
-        }
-      );
+        this.onSearch(this.searchQuery); // Trigger initial filtering
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
   }
 
   // Function to handle the search input change
   onSearch(searchText: string): void {
-    debugger;
     this.searchQuery = searchText.trim().toLowerCase();
     if (this.searchQuery) {
       // Filter the data based on the search query
       this.listOfData = this.fullListOfData.filter((employee) =>
-        employee.name.toLowerCase().includes(this.searchQuery)
+        employee.userName.toLowerCase().includes(this.searchQuery)
       );
     } else {
       // If the search query is empty, show the full data
@@ -314,12 +381,12 @@ export class TableComponent implements OnInit {
     });
   }
   // Function to export the selected employees
-  exportData(selectedEmployees: Employee[]) {
+  exportData(selectedEmployees: User[]) {
     const fileName = this.fileName.trim() || 'exported_data';
     if (this.exportFormat === 'CSV') {
       const csvData = selectedEmployees.map(
         (employee) =>
-          `${employee.name},${employee.email},${employee.company},${employee.position},${employee.joinDate}`
+          `${employee.userName},${employee.email},${employee.company},${employee.phoneNumber},${employee.status}`
       );
       const csvContent = 'data:text/csv;charset=utf-8,' + csvData.join('\n');
       const encodedUri = encodeURI(csvContent);
@@ -346,5 +413,92 @@ export class TableComponent implements OnInit {
       link.download = `${fileName}.xlsx`;
       link.click(); // Immediately click the link to trigger the download
     }
+  }
+
+  count(): number {
+    return this.roles.filter((item) => item.status === true).length;
+  }
+  async showRoles(showRoles: TemplateRef<{}>, id: string) {
+    let rolesToUser: RolesToUser = {
+      userId: id,
+    };
+
+    let userToRole = await this.applicationsService.getRolesToUser(rolesToUser);
+    userToRole.subscribe({
+      next: async (response) => {
+        this.userToRoleResponse = response.data;
+        console.log(response);
+        let roles = await this.roleService.GetRoles();
+        roles.subscribe({
+          next: (data) => {
+            if (this.userToRoleResponse != null) {
+              data.data.forEach((x) => {
+                if (this.userToRoleResponse.some((e) => e == x.name)) {
+                  x.status = true;
+                } else {
+                  x.status = false;
+                }
+              });
+            }
+            this.roles = data.data.filter((x) =>
+              x.name.includes('CorporateCompany')
+            );
+            console.log(this.roles);
+          },
+        });
+
+        const modal = this.modalService.create({
+          nzTitle: 'Sayfalara Rol Atama',
+          nzContent: showRoles,
+          nzFooter: [
+            {
+              label: 'Rolleri Güncelle',
+              type: 'primary',
+              onClick: async () => {
+                let rolersName: string[] = [];
+                this.roles
+                  .filter((r) => r.status)
+                  .forEach((x) => {
+                    rolersName.push(x.name);
+                  });
+
+                let assignRoleToUser: AssignRoleToUser = {
+                  userId: id,
+                  roles: rolersName,
+                };
+
+                let assignRoleData =
+                  await this.applicationsService.assignRoleUser(
+                    assignRoleToUser
+                  );
+                assignRoleData.subscribe({
+                  next: (response) => {
+                    if (response.success) {
+                      this.toastrService.message(
+                        response.message,
+                        'Rol Ekleme',
+                        {
+                          messageType: ToastrMessageType.Success,
+                          position: ToastrPosition.BottomFullWidth,
+                          timeOut: ToastrTimeOut.fivesn,
+                          messageClass: ToastrMessageClass.Success,
+                          titleClass: ToastrTitleClass.Success,
+                          toastClass: ToastrToastClass.Success,
+                        }
+                      );
+                      this.modalService.closeAll();
+                    }
+                  },
+                  error: (e) => {
+                    console.log(e);
+                  },
+                });
+              },
+            },
+          ],
+          nzWidth: 620,
+        });
+      },
+    });
   }
 }

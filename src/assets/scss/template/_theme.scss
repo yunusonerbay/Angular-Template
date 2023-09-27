@@ -684,8 +684,29 @@
  .ant-switch.ant-switch-checked{
   @apply bg-primary;
 }
+.ant-pagination-item-active {
+  @apply hover:border-primary border-primary;
+  
+}
+.ant-checkbox-inner,.ant-checkbox {
+  @apply border-primary
+}
 
+.ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: #00ADEE;
+}
+.ant-checkbox-checked::after {
+  border-color: #00ADEE;
+}
 
+.ant-pagination-item:hover {
+  border-color: #00ADEE;
+  transition: all 0.3s;
+}
+
+.ant-pagination-item:hover a {
+  color: #00ADEE;
+}
 /*------ Vector Map Tooltip -------*/
 /* vector map */
 .svgMap-tooltip {

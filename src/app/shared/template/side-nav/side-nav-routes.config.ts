@@ -1,8 +1,7 @@
-import {
-  SideNavInterface
-} from '../../interfaces/side-nav.type';
+import { SideNavInterface } from '../../interfaces/side-nav.type';
 
-export const ROUTES: SideNavInterface[] = [{
+export const ROUTES: SideNavInterface[] = [
+  {
     path: '/dashboard',
     title: 'Dashboard',
     iconType: 'nzIcon',
@@ -23,7 +22,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/dashboard/endpoints',
@@ -31,7 +30,15 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
+      },
+      {
+        path: '/dashboard/users',
+        title: 'Users',
+        iconType: '',
+        icon: '',
+        iconTheme: '',
+        submenu: [],
       },
       // {
       //   path: '/dashboard/demo-three',
@@ -49,7 +56,7 @@ export const ROUTES: SideNavInterface[] = [{
       //   iconTheme: '',
       //   submenu: []
       // },
-    ]
+    ],
   },
   // {
   //   path: '/changelog/changelog',
@@ -65,19 +72,21 @@ export const ROUTES: SideNavInterface[] = [{
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: 'appstore',
-    submenu: [{
+    submenu: [
+      {
         path: '',
         title: 'Email',
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/email/inbox',
             title: 'Inbox',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/email/read-email',
@@ -85,9 +94,9 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
-        ]
+        ],
       },
       {
         path: '/apps/chat',
@@ -95,7 +104,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/apps/projects',
@@ -103,13 +112,14 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/projects/project-list',
             title: 'Projects',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/projects/project-details',
@@ -117,9 +127,9 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '/apps/contacts',
@@ -127,13 +137,14 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/contacts/contacts-grid',
             title: 'Contacts Grid',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/contacts/contacts-list',
@@ -141,9 +152,9 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '/apps/todo',
@@ -151,7 +162,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/apps/import-export',
@@ -159,13 +170,14 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/import-export/import',
             title: 'Import',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/import-export/export',
@@ -173,9 +185,9 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
-        ]
+        ],
       },
       {
         path: '/apps/supports',
@@ -183,13 +195,14 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/apps/supports/support',
             title: 'Support',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/supports/add-support',
@@ -197,7 +210,7 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/apps/supports/view-support',
@@ -205,11 +218,11 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
-        ]
+        ],
       },
-    ]
+    ],
   },
   {
     path: '',
@@ -224,7 +237,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/auto-complete/en/',
@@ -232,7 +245,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/avatar/en',
@@ -240,7 +253,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/badge/en',
@@ -248,7 +261,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/breadcrumb/en',
@@ -256,7 +269,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/button/en',
@@ -264,7 +277,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/calendar/en',
@@ -272,7 +285,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/card/en',
@@ -280,7 +293,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/carousel/en',
@@ -288,7 +301,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/cascader/en/',
@@ -296,7 +309,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/checkbox/en/',
@@ -304,7 +317,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/rate/en/',
@@ -312,7 +325,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/progress/en',
@@ -320,7 +333,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/radio/en',
@@ -328,7 +341,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/demo/components/skeleton/en',
@@ -336,9 +349,9 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
-    ]
+    ],
   },
   {
     path: '',
@@ -346,29 +359,31 @@ export const ROUTES: SideNavInterface[] = [{
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: 'appstore',
-    submenu: [{
+    submenu: [
+      {
         path: '',
         title: 'Charts',
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
-          path: 'features/chartjs',
-          title: 'Chart JS',
-          iconType: '',
-          icon: '',
-          iconTheme: '',
-          submenu: [],
-        },
-        {
-          path: 'features/apexchart',
-          title: 'Apex Chart',
-          iconType: '',
-          icon: '',
-          iconTheme: '',
-          submenu: []
-        },
-      ]
+        submenu: [
+          {
+            path: 'features/chartjs',
+            title: 'Chart JS',
+            iconType: '',
+            icon: '',
+            iconTheme: '',
+            submenu: [],
+          },
+          {
+            path: 'features/apexchart',
+            title: 'Apex Chart',
+            iconType: '',
+            icon: '',
+            iconTheme: '',
+            submenu: [],
+          },
+        ],
       },
       {
         path: '/features/icon',
@@ -376,13 +391,14 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/ant-icons',
             title: 'Ant Design',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/uni-icons',
@@ -390,7 +406,7 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/feather-icons',
@@ -398,9 +414,9 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -408,13 +424,14 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/layouts',
             title: 'Form Layouts',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/elements',
@@ -422,7 +439,7 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/components',
@@ -430,7 +447,7 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/validations',
@@ -438,9 +455,9 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -448,13 +465,14 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/basic-table',
             title: 'Basic Table',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/data-table',
@@ -462,9 +480,9 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -472,13 +490,14 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/charts',
             title: 'Charts',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
+            submenu: [],
           },
           {
             path: '/features/cards',
@@ -486,9 +505,9 @@ export const ROUTES: SideNavInterface[] = [{
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -496,15 +515,16 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/wizard-one',
             title: 'Wizard One',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
       {
         path: '',
@@ -512,15 +532,16 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: [{
+        submenu: [
+          {
             path: '/features/google-maps',
             title: 'Google Maps',
             iconType: '',
             icon: '',
             iconTheme: '',
-            submenu: []
-          }
-        ]
+            submenu: [],
+          },
+        ],
       },
     ],
   },
@@ -537,7 +558,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'setting',
         iconTheme: 'outline',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/gallery',
@@ -545,7 +566,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'file-image',
         iconTheme: 'outline',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/pricing',
@@ -553,7 +574,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'dollar-circle',
         iconTheme: 'outline',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/banner',
@@ -561,7 +582,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'profile',
         iconTheme: 'outline',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/blank-page',
@@ -569,7 +590,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'exclamation-circle',
         iconTheme: 'outline',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/blog-page',
@@ -577,7 +598,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'picture',
         iconTheme: 'outline',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/coming-soon',
@@ -585,7 +606,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'reload',
         iconTheme: 'outline',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/error-page',
@@ -593,7 +614,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'stop',
         iconTheme: 'outline',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/maintenance',
@@ -601,7 +622,7 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'question-circle',
         iconTheme: 'outline',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/pages/terms-conditions',
@@ -609,9 +630,9 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: 'nzIcon',
         icon: 'plus-circle',
         iconTheme: 'outline',
-        submenu: []
-      }
-    ]
+        submenu: [],
+      },
+    ],
   },
   {
     path: '',
@@ -619,14 +640,15 @@ export const ROUTES: SideNavInterface[] = [{
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: 'lock',
-    submenu: [{
+    submenu: [
+      {
         path: '/authentication/login-1',
         title: 'Log In',
         iconType: '',
         icon: '',
 
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/authentication/sign-up-1',
@@ -635,7 +657,7 @@ export const ROUTES: SideNavInterface[] = [{
         icon: '',
 
         iconTheme: '',
-        submenu: []
+        submenu: [],
       },
       {
         path: '/authentication/forget-pass',
@@ -643,8 +665,8 @@ export const ROUTES: SideNavInterface[] = [{
         iconType: '',
         icon: '',
         iconTheme: '',
-        submenu: []
-      }
-    ]
-  }
-]
+        submenu: [],
+      },
+    ],
+  },
+];

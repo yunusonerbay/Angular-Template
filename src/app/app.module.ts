@@ -32,6 +32,7 @@ import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
 import { HttpErrorHandlerInterceptorService } from './shared/services/http-error-handler-interceptor.service';
 import { ApplicationsService } from './shared/services/applications.service';
 import { RolesService } from './shared/services/roles.service';
+import { UsersService } from './shared/services/users.service';
 
 registerLocaleData(en);
 
@@ -52,8 +53,7 @@ export function setupTranslateFactory(service: LanguageService): Function {
     NgApexchartsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    AngularSvgIconModule.forRoot(
-    ),
+    AngularSvgIconModule.forRoot(),
   ],
   providers: [
     {
@@ -83,7 +83,8 @@ export function setupTranslateFactory(service: LanguageService): Function {
     ThemeConstantService,
     AuthenticationService,
     ApplicationsService,
-    RolesService
+    RolesService,
+    UsersService,
   ],
   bootstrap: [AppComponent],
 })
