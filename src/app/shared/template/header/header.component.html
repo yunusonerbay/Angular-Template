@@ -71,7 +71,7 @@
           />
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a
           class="inline-flex items-center bg-normalBG hover:bg-primary/10 hover:text-primary dark:bg-[#282b37] dark:text-white/60 min-h-[34px] max-sm:w-[34px] max-sm:justify-center px-4 max-sm:px-0 rounded-2xl gap-[8px] dark:hover:bg-white/60 group dark:hover:text-dark transition duration-200 capitalize"
           (click)="quickViewToggle()"
@@ -95,7 +95,7 @@
             <app-quick-view></app-quick-view>
           </ng-container>
         </nz-drawer>
-      </li>
+      </li> -->
     </ul>
     <!-- Top Menu -->
     <app-menu></app-menu>
@@ -221,7 +221,7 @@
             </div>
           </nz-dropdown-menu>
         </li> -->
-        <li>
+        <!-- <li>
           <a
             class="flex items-center"
             nz-dropdown
@@ -306,7 +306,7 @@
               >
             </div>
           </nz-dropdown-menu>
-        </li>
+        </li> -->
         <!-- <li>
           <a class="flex items-center" nz-dropdown [nzDropdownMenu]="popSettings">
             <nz-badge>
@@ -329,7 +329,7 @@
             </perfect-scrollbar>
           </nz-dropdown-menu>
         </li> -->
-        <li>
+        <!-- <li>
           <a
             class="flex items-center"
             nz-dropdown
@@ -389,7 +389,7 @@
               </li>
             </ul>
           </nz-dropdown-menu>
-        </li>
+        </li> -->
         <li>
           <span
             class="flex items-center cursor-pointer text-light whitespace-nowrap"
@@ -402,7 +402,7 @@
             ></nz-avatar>
             <span
               class="me-1.5 ms-2.5 text-body dark:text-white/60 text-sm font-medium max-md:hidden"
-              >Md. Rafiq</span
+              >{{ getName() }}</span
             >
             <span
               class="[&>svg]:w-[10px] [&>svg]:h-[10px] [&>svg]:max-md:ms-[5px]"
@@ -425,10 +425,10 @@
                 ></nz-avatar>
                 <figcaption>
                   <h1 class="text-dark dark:text-white/[.87] mb-0.5 text-sm">
-                    Md. Rafiq
+                    {{ getName() }}
                   </h1>
                   <p class="mb-0 text-xs text-body dark:text-white/60">
-                    UI Expert
+                    {{ getCompany() }}
                   </p>
                 </figcaption>
               </figure>

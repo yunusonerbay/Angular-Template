@@ -1,11 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import * as XLSX from 'xlsx';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { User } from 'src/app/models/response/userResponseModel';
 import { Role } from 'src/app/models/response/roleResponseModel';
-import { RolesToEndpointResponse } from 'src/app/models/response/rolesToEndpointResponseModel';
 import { ApplicationsService } from 'src/app/shared/services/applications.service';
 import { RolesService } from 'src/app/shared/services/roles.service';
 import {
@@ -19,6 +17,8 @@ import {
 } from 'src/app/shared/services/ui/custom-toastr.service';
 import { AssignRoleToUser } from 'src/app/models/request/assignRoleToUserModel';
 import { RolesToUser } from 'src/app/models/request/rolesToUserModel';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { UserInfo } from 'src/app/models/response/userInfoModel';
 
 @Component({
   selector: 'user-list',
@@ -251,14 +251,18 @@ export class UserListComponent implements OnInit {
   searchQuery: string = '';
   roles: Role[] = [];
   userToRoleResponse: string[];
+  userInfo: UserInfo;
 
   constructor(
     private modalService: NzModalService,
     private userService: UsersService,
     private applicationsService: ApplicationsService,
     private roleService: RolesService,
-    private toastrService: CustomToastrService
-  ) {}
+    private toastrService: CustomToastrService,
+    private localStorage: LocalStorageService
+  ) {
+    this.userInfo = this.localStorage.get('currentUser');
+  }
 
   updateCheckedSet(id: string, checked: boolean): void {
     if (checked) {
@@ -299,7 +303,7 @@ export class UserListComponent implements OnInit {
   }
 
   async loadEmployeeData(): Promise<void> {
-    let users = await this.userService.getUsers(7136);
+    let users = await this.userService.getUsers(this.userInfo.companyId);
     users.subscribe({
       next: (data) => {
         console.log(data);

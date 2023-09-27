@@ -6,38 +6,67 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import {
+  CustomToastrService,
+  ToastrMessageClass,
+  ToastrMessageType,
+  ToastrPosition,
+  ToastrTimeOut,
+  ToastrTitleClass,
+  ToastrToastClass,
+} from '../services/ui/custom-toastr.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  private tokenModel: TokenModel;
+  private loginTokenModel: TokenModel;
+  date: Date;
+  constructor(
+    private localStorageService: LocalStorageService,
+    private toastrService: CustomToastrService,
+    private router: Router
+  ) {}
+  intercept(
+    request: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
+    this.tokenModel = this.localStorageService.get('tokenModel');
+    this.loginTokenModel = this.localStorageService.get('loginTokenModel');
+    this.date = new Date();
+    let tokenExpiration = new Date(this.tokenModel?.expiration);
+    if (tokenExpiration < this.date) {
+      this.localStorageService.remove('tokenModel');
+      this.toastrService.message(
+        'Lütfen Yeniden Giriş Yapınız !',
+        'Oturumunuz Zaman Aşımına Uğradı',
+        {
+          messageType: ToastrMessageType.Warning,
+          position: ToastrPosition.TopRight,
+          timeOut: ToastrTimeOut.fivesn,
+          messageClass: ToastrMessageClass.Warning,
+          titleClass: ToastrTitleClass.Warning,
+          toastClass: ToastrToastClass.Warning,
+        }
+      );
+      this.router.navigate(['authentication/login-1']).then(() => {
+        window.location.reload();
+      });
+    }
 
-  private tokenModel : TokenModel
-  private loginTokenModel : TokenModel
-  date : Date
-  toastrService: any;
-  constructor(private localStorageService: LocalStorageService, toastrService: ToastrService, private router: Router) {}
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>>{
-    this.tokenModel = this.localStorageService.get("tokenModel");
-    this.loginTokenModel = this.localStorageService.get("loginTokenModel");
-      this.date = new Date()      
-      let tokenExpiration = new Date(this.tokenModel?.expiration)
-      if (tokenExpiration < this.date) {
-        this.localStorageService.remove("tokenModel");
-        this.toastrService.warning("Lütfen Yeniden Giriş Yapınız !", "Oturumunuz Zaman Aşımına Uğradı")
-        this.router.navigate(['authentication/login-1']).then(() => { window.location.reload();  });
-        return throwError("500")  
-      }
+    let newRequest: HttpRequest<any>;
+    var token =
+      this.loginTokenModel != null
+        ? this.loginTokenModel?.token
+        : this.tokenModel?.token;
+    newRequest = request.clone({
+      // headers: request.headers.set("Authorization", "Bearer " + this.loginTokenModel != null ? this.loginTokenModel?.token : this.tokenModel?.token)
+      headers: request.headers.set('Authorization', 'Bearer ' + token),
+    });
 
-      let newRequest : HttpRequest<any>;
-      var token = this.loginTokenModel != null ? this.loginTokenModel?.token : this.tokenModel?.token
-      newRequest = request.clone({
-        // headers: request.headers.set("Authorization", "Bearer " + this.loginTokenModel != null ? this.loginTokenModel?.token : this.tokenModel?.token)
-        headers: request.headers.set("Authorization", "Bearer " + token)
-      })
-
-      return next.handle(newRequest);
+    return next.handle(newRequest);
   }
 }

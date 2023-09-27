@@ -20,7 +20,7 @@ const routes: Routes = [
     data: {
       title: 'Yunus',
     },
-    //  canActivate: [LoginGuard],
+    canActivate: [LoginGuard],
   },
   {
     path: 'endpoints',
@@ -28,7 +28,7 @@ const routes: Routes = [
     data: {
       title: 'endpoints',
     },
-    //  canActivate: [LoginGuard],
+    canActivate: [LoginGuard],
   },
   {
     path: 'users',
@@ -36,7 +36,7 @@ const routes: Routes = [
     data: {
       title: 'Kullanıcılar',
     },
-    //  canActivate: [LoginGuard],
+    canActivate: [LoginGuard],
   },
 ];
 
