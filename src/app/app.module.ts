@@ -33,6 +33,7 @@ import { HttpErrorHandlerInterceptorService } from './shared/services/http-error
 import { ApplicationsService } from './shared/services/applications.service';
 import { RolesService } from './shared/services/roles.service';
 import { UsersService } from './shared/services/users.service';
+import { CompanyService } from './shared/services/company.service';
 
 registerLocaleData(en);
 
@@ -85,6 +86,7 @@ export function setupTranslateFactory(service: LanguageService): Function {
     ApplicationsService,
     RolesService,
     UsersService,
+    CompanyService,
   ],
   bootstrap: [AppComponent],
 })

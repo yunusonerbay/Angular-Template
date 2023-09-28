@@ -52,9 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
           toastClass: ToastrToastClass.Warning,
         }
       );
-      this.router.navigate(['authentication/login-1']).then(() => {
-        window.location.reload();
-      });
+      this.router.navigate(['authentication/login-1']);
     }
 
     let newRequest: HttpRequest<any>;

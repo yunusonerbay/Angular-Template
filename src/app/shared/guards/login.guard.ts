@@ -38,7 +38,6 @@ export class LoginGuard implements CanActivate {
     if (this.authenticationService.isAuthenticated()) {
       return true;
     } else {
-      // this.router.navigate(["/login-1"])
       this.router.navigate(['authentication/login-1']);
       this.toastrService.message(
         'Devam Edebilmek İçin Sisteme Giriş Yapmalısınız !',
