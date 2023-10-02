@@ -40,6 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
     let tokenExpiration = new Date(this.tokenModel?.expiration);
     if (tokenExpiration < this.date) {
       this.localStorageService.remove('tokenModel');
+      this.localStorageService.remove('currentUser');
       this.toastrService.message(
         'Lütfen Yeniden Giriş Yapınız !',
         'Oturumunuz Zaman Aşımına Uğradı',

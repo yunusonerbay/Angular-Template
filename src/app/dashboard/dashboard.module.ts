@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
@@ -44,6 +44,7 @@ import { FeaturesModule } from '../features/features.module';
 import { UsersComponent } from './users/users.component';
 import { UserListComponent } from './users/userList';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { TransactionListComponent } from './transaction/transactionList';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -97,9 +98,11 @@ const antdModule = [
     EndpointsComponent,
     UsersComponent,
     UserListComponent,
+    TransactionListComponent,
   ],
   providers: [
     ThemeConstantService,
+    DatePipe,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,

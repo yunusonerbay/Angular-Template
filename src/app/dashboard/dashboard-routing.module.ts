@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'transaction',
     component: TransactionComponent,
     data: {
-      title: 'Yunus',
+      title: 'transaction',
     },
     canActivate: [LoginGuard],
   },
@@ -34,7 +34,7 @@ const routes: Routes = [
     path: 'users',
     component: UsersComponent,
     data: {
-      title: 'Kullanıcılar',
+      title: 'Users',
     },
     canActivate: [LoginGuard],
   },

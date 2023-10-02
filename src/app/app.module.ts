@@ -34,6 +34,7 @@ import { ApplicationsService } from './shared/services/applications.service';
 import { RolesService } from './shared/services/roles.service';
 import { UsersService } from './shared/services/users.service';
 import { CompanyService } from './shared/services/company.service';
+import { TransactionService } from './shared/services/transaction.service';
 
 registerLocaleData(en);
 
@@ -87,6 +88,7 @@ export function setupTranslateFactory(service: LanguageService): Function {
     RolesService,
     UsersService,
     CompanyService,
+    TransactionService,
   ],
   bootstrap: [AppComponent],
 })

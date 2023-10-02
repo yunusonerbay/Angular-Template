@@ -159,7 +159,8 @@ export class OverviewListComponent implements OnInit {
     balance.subscribe({
       next: (data) => {
         console.log(data);
-        this.balances = data.data.filter((x) => x.code == 'TL');
+        // this.balances = data.data.filter((x) => x.code == 'TL');
+        this.balances = data.data;
       },
       error: (e) => {
         console.log(e);
