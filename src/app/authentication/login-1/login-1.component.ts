@@ -1,6 +1,11 @@
-import { Component } from '@angular/core'
-import { FormBuilder, FormGroup, UntypedFormGroup, Validators } from '@angular/forms';
-import  socialIcons  from './../../../assets/data/pages/social-items.json';
+import { Component } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import socialIcons from './../../../assets/data/pages/social-items.json';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
@@ -9,43 +14,42 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({
-    templateUrl: './login-1.component.html'
+  templateUrl: './login-1.component.html',
 })
-
 export class Login1Component {
   loginForm: FormGroup;
   isLoading = false;
   error = false;
   socialMediaButtons = socialIcons.socialMediaButtons;
   validateForm: FormGroup;
-  SignIn:string;
+  SignIn: string;
   errorMessage: string;
 
-  constructor(private fb: FormBuilder,
-     private router: Router,
-      private authenticationService : AuthenticationService,
-      private localStorageService:LocalStorageService,
-      private languageService :LanguageService,
-      private toastrService: ToastrService
-      ) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private localStorageService: LocalStorageService,
+    private languageService: LanguageService,
+    private toastrService: ToastrService
+  ) {}
 
   submitForm(): void {
     if (this.validateForm.valid) {
       const loginModel: LoginModel = {
-        email:this.validateForm.value.email,
-        password :this.validateForm.value.password,
+        email: this.validateForm.value.email,
+        password: this.validateForm.value.password,
       };
       this.authenticationService.login(loginModel).subscribe({
         next: (response) => {
           console.log(response);
-          this.localStorageService.set(response.data,"loginTokenModel")
-          this.router.navigate(['authentication/verify']).then(() => { window.location.reload();  });
+          this.localStorageService.set(response.data, 'loginTokenModel');
+          this.router.navigate(['authentication/verify']);
         },
         error: (e) => {
           console.log(e);
         },
       });
-
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -63,17 +67,16 @@ export class Login1Component {
     );
   }
 
-
   passwordVisible = false;
   password?: string;
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      email: ['', [Validators.required,Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       remember: [true],
     });
-    
+
     // const LanguageModel: LanguageModel={
     //   LanguageCode:"EN",
     //   Key:"SignIn"
@@ -81,7 +84,7 @@ export class Login1Component {
     // this.languageService.Language(LanguageModel).subscribe({
     //     next: (response) => {
     //       debugger
-          
+
     //       console.log("languageServiceResponse = " +response.data);
     //       this.SignIn=response.data;
     //       // this.localStorageService.set(response.data,"tokenModel")
@@ -92,9 +95,4 @@ export class Login1Component {
     //     },
     // });
   }
-
-
-
-
-
 }

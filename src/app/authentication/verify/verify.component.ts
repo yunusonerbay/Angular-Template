@@ -46,9 +46,7 @@ export class VerifyComponent implements OnInit {
 
           this.userService.getUserInfo().subscribe({
             next: () => {
-              this.router.navigate(['dashboard/transaction']).then(() => {
-                window.location.reload();
-              });
+              this.router.navigate(['dashboard/transaction']);
             },
           });
         },
