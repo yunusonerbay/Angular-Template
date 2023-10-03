@@ -6,6 +6,8 @@ import { TransactionService } from 'src/app/shared/services/transaction.service'
 import { ProcessReport } from 'src/app/models/request/processModel';
 import { DatePipe } from '@angular/common';
 import { ProcessResponseReport } from 'src/app/models/response/processResponseModel';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { UserInfo } from 'src/app/models/response/userInfoModel';
 interface Employee {
   id: number;
   name: string;
@@ -26,17 +28,17 @@ interface Employee {
         class="px-[25px] py-[30px] gap-[15px] text-dark dark:text-white/[.87] font-medium text-[17px] flex flex-wrap items-center justify-between max-sm:flex-col max-sm:h-auto max-sm:mb-[15px]"
       >
         <div class="flex items-center justify-center gap-4">
-          <nz-form-label
-            class="flex items-center font-normal capitalize dark:text-white/60"
+          <!-- <nz-form-label
+            class="flex items-center font-medium  capitalize dark:text-white/60"
             nzLg="6"
             nzMd="9"
             nzXs="24"
             nzFor="datePicker"
             >Tarih Seçiniz</nz-form-label
-          >
+          > -->
           <nz-form-control>
             <nz-range-picker
-              class="inline-flex items-center rounden border-normal border-1 text-[14px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[50px] outline-none placeholder:text-light placeholder:font-normal text-theme-gray dark:text-white/60 w-[200px]"
+              class="inline-flex items-center rounded-6 border-normal border-1 text-[12px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[50px] outline-none placeholder:text-light placeholder:font-normal text-theme-gray dark:text-white/60 w-[300px]"
               nzFormat="yyyy-MM-dd"
               ngModel
               (ngModelChange)="onChange($event)"
@@ -387,9 +389,9 @@ interface Employee {
 export class TransactionListComponent implements OnInit {
   checked = false;
   indeterminate = false;
-  pageIndex = 1; // Current page index
-  pageSize = 5; // Number of items per page
-  listOfCurrentPageData: ProcessResponseReport[] = []; // Remove 'readonly'
+  pageIndex = 1;
+  pageSize = 5;
+  listOfCurrentPageData: ProcessResponseReport[] = [];
   listOfData: ProcessResponseReport[] = [];
   setOfCheckedId = new Set<number>();
   fileName: string = '';
@@ -397,16 +399,20 @@ export class TransactionListComponent implements OnInit {
   fullListOfData: ProcessResponseReport[] = [];
   searchQuery: string = '';
   statusFilter = 'all';
+  userInfo: UserInfo;
 
   constructor(
-    private http: HttpClient,
     private modalService: NzModalService,
     private transactionService: TransactionService,
-    private datePipe: DatePipe
-  ) {}
+    private localStorage: LocalStorageService
+  ) {
+    this.userInfo = this.localStorage.get('currentUser');
+  }
 
-  onChange(result: Date): void {
-    console.log('Selected Time: ', result);
+  onChange(result: Date[]) {
+    debugger;
+    console.log(result);
+    this.loadEmployeeData(result);
   }
 
   updateCheckedSet(id: number, checked: boolean): void {
@@ -445,55 +451,65 @@ export class TransactionListComponent implements OnInit {
       ) && !this.checked;
   }
 
-  ngOnInit(): void {
-    this.loadEmployeeData();
+  ngOnInit(): void {}
+
+  getCompanyId(): number {
+    return this.userInfo.companyId;
   }
+  async loadEmployeeData(date: Date[]): Promise<void> {
+    debugger;
+    if (date.length > 0) {
+      let model: ProcessReport = {
+        // customerId: this.getCompanyId(),
+        customerId: 3887,
+        startDate: new Date(
+          date[0].getFullYear(),
+          date[0].getMonth(),
+          date[0].getDate()
+        ),
+        endDate: new Date(
+          date[1].getFullYear(),
+          date[1].getMonth(),
+          date[1].getDate()
+        ),
+      };
+      console.log(model);
+      let data = await this.transactionService.getProcess(model);
+      data.subscribe({
+        next: (data) => {
+          data.data.forEach((x) => {
+            if (x.status == 0) {
+              x.statusClass = 'warning';
+              x.statusDisplay = 'Beklemede';
+            }
+            if (x.status == 1) {
+              x.statusClass = 'success';
+              x.statusDisplay = 'Başarılı';
+            }
+            if (x.status == 2) {
+              x.statusClass = 'danger';
+              x.statusDisplay = 'İptal';
+            }
+          });
+          this.fullListOfData = data.data; // Store the full data separately
 
-  async loadEmployeeData(): Promise<void> {
-    let model: ProcessReport = {
-      customerId: 3887,
-      startDate: new Date(2023, 7, 12),
-      endDate: new Date(),
-    };
+          // Calculate the start and end index for the current page
+          const startIndex = (this.pageIndex - 1) * this.pageSize;
+          const endIndex = startIndex + this.pageSize;
 
-    let data = await this.transactionService.getProcess(model);
-    data.subscribe({
-      next: (data) => {
-        console.log(data);
-        data.data.forEach((x) => {
-          if (x.status == 0) {
-            x.statusClass = 'warning';
-            x.statusDisplay = 'Beklemede';
-          }
-          if (x.status == 1) {
-            x.statusClass = 'success';
-            x.statusDisplay = 'Başarılı';
-          }
-          if (x.status == 2) {
-            x.statusClass = 'danger';
-            x.statusDisplay = 'İptal';
-          }
-        });
-        this.fullListOfData = data.data; // Store the full data separately
+          // Slice the full data to get the data for the current page
+          this.listOfData = this.fullListOfData.slice(startIndex, endIndex);
 
-        // Calculate the start and end index for the current page
-        const startIndex = (this.pageIndex - 1) * this.pageSize;
-        const endIndex = startIndex + this.pageSize;
-
-        // Slice the full data to get the data for the current page
-        this.listOfData = this.fullListOfData.slice(startIndex, endIndex);
-
-        this.onSearch(this.searchQuery); // Trigger initial filtering
-      },
-      error: (e) => {
-        console.log(e);
-      },
-    });
+          this.onSearch(this.searchQuery); // Trigger initial filtering
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
+    }
   }
 
   filterByStatus(): void {
-    debugger;
-
     this.listOfData = this.applyFilters();
     this.listOfCurrentPageData = this.listOfData;
     this.pageIndex = 1; // Reset the page index to 1

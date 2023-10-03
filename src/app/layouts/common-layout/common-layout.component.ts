@@ -27,7 +27,6 @@ export class CommonLayoutComponent {
         filter((event) => event instanceof NavigationEnd),
         map(() => {
           let child = this.activatedRoute.firstChild;
-          console.log(child);
           while (child) {
             if (child.firstChild) {
               child = child.firstChild;
